@@ -25,9 +25,7 @@ test('Changing inputs', () => {
   const emailInput =  getByLabelText(/email/i)
 
   fireEvent.change(firstNameInput, {target: { value: "First Name" },});
-  
   fireEvent.change(lastNameInput, {target: { value: "Last Name" },});
-
   fireEvent.change(emailInput, {target: { value: "test@email.com" },});
 
   expect(firstNameInput.value).toBe("First Name");
@@ -46,7 +44,10 @@ test("Form will Submit", () => {
   fireEvent.change(lastNameInput, {target: { value: "Last Name" },});
   fireEvent.change(emailInput, {target: { value: "test@email.com" },});
   fireEvent.change(submitBtn);
-  
-
   fireEvent.click(getByTestId("submit"));}
+
+  setTimeout(() => {
+      const formRes = getByTestId(/dataInfo/i);
+      expect(formRes).toBeInTheDocument();
+    }, 1);
 });
